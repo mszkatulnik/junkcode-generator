@@ -1,6 +1,9 @@
 package pl.szkatulnik.app;
 
 import pl.szkatulnik.app.enums.Language;
+import pl.szkatulnik.app.generator.Generator;
+import pl.szkatulnik.app.generator.GeneratorManager;
+import pl.szkatulnik.app.generator.impl.JavaGenerator;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,6 +25,16 @@ public class Main extends JPanel
         codeBox.setEditable(false);
         final JScrollPane codeScroll = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         codeScroll.setViewportView(codeBox);
+
+        generateButton.addActionListener(e ->
+        {
+            final Generator generator = GeneratorManager.getGenerator(Language.valueOf(languageBox.getSelectedItem().toString()));
+
+            if (generator != null)
+            {
+                codeBox.setText(generator.generate());
+            }
+        });
 
         copyBtn.addActionListener(e -> Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(codeBox.getText()), null));
 
@@ -45,6 +58,8 @@ public class Main extends JPanel
 
     public static void main(String... args)
     {
+        GeneratorManager.registerGenerators(new JavaGenerator());
+
         final JFrame frame = new JFrame("junkcode-generator v" + VERSION);
         frame.setResizable(false);
         frame.getContentPane().add(new Main());
