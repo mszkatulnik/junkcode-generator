@@ -12,10 +12,15 @@ public class Main extends JPanel
     private Main()
     {
         final JLabel label1 = new JLabel("                                                          JunkCode-Generator v" + VERSION + " - github.com/mszkatulnik");
+
         final JComboBox languageBox = new JComboBox(Language.values());
         final JButton generateButton = new JButton("Generate");
+
         final JButton copyBtn = new JButton("Copy");
         final JTextArea codeBox = new JTextArea();
+        codeBox.setEditable(false);
+        final JScrollPane codeScroll = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        codeScroll.setViewportView(codeBox);
 
         this.setPreferredSize(new Dimension(650, 377));
         this.setLayout(null);
@@ -24,13 +29,15 @@ public class Main extends JPanel
         this.add(languageBox);
         this.add(generateButton);
         this.add(copyBtn);
-        this.add(codeBox);
+        this.add(codeScroll);
 
         label1.setBounds(0, 0, 650, 55);
+
         languageBox.setBounds(10, 65, 100, 25);
         generateButton.setBounds(115, 65, 100, 25);
+
         copyBtn.setBounds(540, 65, 100, 25);
-        codeBox.setBounds(10, 95, 630, 270);
+        codeScroll.setBounds(10, 95, 630, 270);
     }
 
     public static void main(String... args)
