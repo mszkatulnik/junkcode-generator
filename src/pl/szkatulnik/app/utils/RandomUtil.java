@@ -10,7 +10,7 @@ public class RandomUtil
 
     public static String getRandomVariable()
     {
-        final String[] variables = new String[] { "String", "int", "float" };
+        final String[] variables = new String[] { "string", "int", "float" };
         return variables[random.nextInt(variables.length)];
     }
 

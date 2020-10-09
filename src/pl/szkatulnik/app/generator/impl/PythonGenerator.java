@@ -4,11 +4,11 @@ import pl.szkatulnik.app.enums.Language;
 import pl.szkatulnik.app.generator.Generator;
 import pl.szkatulnik.app.utils.RandomUtil;
 
-public class JavaGenerator extends Generator
+public class PythonGenerator extends Generator
 {
-    public JavaGenerator()
+    public PythonGenerator()
     {
-        super(Language.Java);
+        super(Language.Python);
     }
 
     @Override
@@ -23,13 +23,13 @@ public class JavaGenerator extends Generator
             switch (variable)
             {
                 case "string":
-                    builder.append("private String ").append(prefix).append("_").append(RandomUtil.getRandomString()).append(" = \"").append(RandomUtil.getRandomString()).append("\";");
+                    builder.append(prefix).append("_").append(RandomUtil.getRandomString()).append(" = \"").append(RandomUtil.getRandomString()).append("\"");
                     break;
                 case "int":
-                    builder.append("private int ").append(prefix).append("_").append(RandomUtil.getRandomString()).append(" = ").append(RandomUtil.getRandomInt()).append(";");
+                    builder.append(prefix).append("_").append(RandomUtil.getRandomString()).append(" = ").append(RandomUtil.getRandomInt());
                     break;
                 case "float":
-                    builder.append("private float ").append(prefix).append("_").append(RandomUtil.getRandomString()).append(" = (float) ").append(RandomUtil.getRandomFloat()).append(";");
+                    builder.append(prefix).append("_").append(RandomUtil.getRandomString()).append(" = ").append(RandomUtil.getRandomFloat());
                     break;
                 default:
                     break;
@@ -40,26 +40,27 @@ public class JavaGenerator extends Generator
         //methods
         for (int i = 0; i < methodsCount; i++)
         {
-            builder.append("\nprivate void ").append(prefix).append("_").append(RandomUtil.getRandomString()).append("() { ");
+            builder.append("\ndef ").append(prefix).append("_").append(RandomUtil.getRandomString()).append("():\n\t");
             for (int j = 0; j < variablesInMethodCount; j++)
             {
                 final String variable = RandomUtil.getRandomVariable();
                 switch (variable)
                 {
                     case "string":
-                        builder.append("String ").append(prefix).append("_").append(RandomUtil.getRandomString()).append(" = \"").append(RandomUtil.getRandomString()).append("\"; ");
+                        builder.append(prefix).append("_").append(RandomUtil.getRandomString()).append(" = \"").append(RandomUtil.getRandomString()).append("\"\n");
                         break;
                     case "int":
-                        builder.append("int ").append(prefix).append("_").append(RandomUtil.getRandomString()).append(" = ").append(RandomUtil.getRandomInt()).append("; ");
+                        builder.append(prefix).append("_").append(RandomUtil.getRandomString()).append(" = ").append(RandomUtil.getRandomInt()).append("\n");
                         break;
                     case "float":
-                        builder.append("float ").append(prefix).append("_").append(RandomUtil.getRandomString()).append(" = (float) ").append(RandomUtil.getRandomFloat()).append("; ");
+                        builder.append(prefix).append("_").append(RandomUtil.getRandomString()).append(" = ").append(RandomUtil.getRandomFloat()).append("\n");
                         break;
                     default:
                         break;
                 }
+                builder.append("\t");
             }
-            builder.append("}\n");
+            builder.append("\n");
         }
 
         return builder.toString();

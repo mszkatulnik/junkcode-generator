@@ -4,6 +4,7 @@ import pl.szkatulnik.app.enums.Language;
 import pl.szkatulnik.app.generator.Generator;
 import pl.szkatulnik.app.generator.GeneratorManager;
 import pl.szkatulnik.app.generator.impl.JavaGenerator;
+import pl.szkatulnik.app.generator.impl.PythonGenerator;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +13,7 @@ import java.util.Objects;
 
 public class Main extends JPanel
 {
-    private static final String VERSION = "1.0";
+    private static final String VERSION = "1.1";
 
     private Main()
     {
@@ -49,7 +50,7 @@ public class Main extends JPanel
                 variablesCount = Integer.parseInt(variablesCountBox.getText());
                 methodsCount = Integer.parseInt(methodsCountBox.getText());
                 variablesMethodCount = Integer.parseInt(variablesMethodCountBox.getText());
-            } catch (Exception ex)
+            } catch (Exception ignored)
             {
             }
 
@@ -106,7 +107,7 @@ public class Main extends JPanel
 
     public static void main(String... args)
     {
-        GeneratorManager.registerGenerators(new JavaGenerator());
+        GeneratorManager.registerGenerators(new JavaGenerator(), new PythonGenerator());
 
         final JFrame frame = new JFrame("junkcode-generator v" + VERSION);
         frame.setResizable(false);
