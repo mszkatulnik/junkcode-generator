@@ -4,6 +4,7 @@ import pl.szkatulnik.app.enums.Language;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.datatransfer.StringSelection;
 
 public class Main extends JPanel
 {
@@ -21,6 +22,8 @@ public class Main extends JPanel
         codeBox.setEditable(false);
         final JScrollPane codeScroll = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         codeScroll.setViewportView(codeBox);
+
+        copyBtn.addActionListener(e -> Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(codeBox.getText()), null));
 
         this.setPreferredSize(new Dimension(650, 377));
         this.setLayout(null);
