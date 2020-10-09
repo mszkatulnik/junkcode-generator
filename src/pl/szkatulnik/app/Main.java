@@ -3,6 +3,7 @@ package pl.szkatulnik.app;
 import pl.szkatulnik.app.enums.Language;
 import pl.szkatulnik.app.generator.Generator;
 import pl.szkatulnik.app.generator.GeneratorManager;
+import pl.szkatulnik.app.generator.impl.CppGenerator;
 import pl.szkatulnik.app.generator.impl.JavaGenerator;
 import pl.szkatulnik.app.generator.impl.PythonGenerator;
 
@@ -13,7 +14,7 @@ import java.util.Objects;
 
 public class Main extends JPanel
 {
-    private static final String VERSION = "1.1";
+    private static final String VERSION = "1.2";
 
     private Main()
     {
@@ -107,7 +108,7 @@ public class Main extends JPanel
 
     public static void main(String... args)
     {
-        GeneratorManager.registerGenerators(new JavaGenerator(), new PythonGenerator());
+        GeneratorManager.registerGenerators(new JavaGenerator(), new PythonGenerator(), new CppGenerator());
 
         final JFrame frame = new JFrame("junkcode-generator v" + VERSION);
         frame.setResizable(false);
