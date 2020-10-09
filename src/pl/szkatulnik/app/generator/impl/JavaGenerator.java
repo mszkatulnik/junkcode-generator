@@ -12,24 +12,24 @@ public class JavaGenerator extends Generator
     }
 
     @Override
-    public String generate()
+    public String generate(String prefix, int variablesCount, int methodsCount, int variablesInMethodCount)
     {
         final StringBuilder builder = new StringBuilder();
 
         //variables
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < variablesCount; i++)
         {
             final String variable = RandomUtil.getRandomVariable();
             switch (variable)
             {
                 case "String":
-                    builder.append("private String ").append(RandomUtil.getRandomString()).append(" = \"").append(RandomUtil.getRandomString()).append("\";");
+                    builder.append("private String ").append(prefix).append("_").append(RandomUtil.getRandomString()).append(" = \"").append(RandomUtil.getRandomString()).append("\";");
                     break;
                 case "int":
-                    builder.append("private int ").append(RandomUtil.getRandomString()).append(" = ").append(RandomUtil.getRandomInt()).append(";");
+                    builder.append("private int ").append(prefix).append("_").append(RandomUtil.getRandomString()).append(" = ").append(RandomUtil.getRandomInt()).append(";");
                     break;
                 case "float":
-                    builder.append("private float ").append(RandomUtil.getRandomString()).append(" = (float) ").append(RandomUtil.getRandomFloat()).append(";");
+                    builder.append("private float ").append(prefix).append("_").append(RandomUtil.getRandomString()).append(" = (float) ").append(RandomUtil.getRandomFloat()).append(";");
                     break;
                 default:
                     break;
@@ -38,22 +38,22 @@ public class JavaGenerator extends Generator
         }
 
         //methods
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < methodsCount; i++)
         {
-            builder.append("\nprivate void " + RandomUtil.getRandomString() + "() { ");
-            for (int j = 0; j < 4; j++)
+            builder.append("\nprivate void ").append(prefix).append("_").append(RandomUtil.getRandomString()).append("() { ");
+            for (int j = 0; j < variablesInMethodCount; j++)
             {
                 final String variable = RandomUtil.getRandomVariable();
                 switch (variable)
                 {
                     case "String":
-                        builder.append("String ").append(RandomUtil.getRandomString()).append(" = \"").append(RandomUtil.getRandomString()).append("\"; ");
+                        builder.append("String ").append(prefix).append("_").append(RandomUtil.getRandomString()).append(" = \"").append(RandomUtil.getRandomString()).append("\"; ");
                         break;
                     case "int":
-                        builder.append("int ").append(RandomUtil.getRandomString()).append(" = ").append(RandomUtil.getRandomInt()).append("; ");
+                        builder.append("int ").append(prefix).append("_").append(RandomUtil.getRandomString()).append(" = ").append(RandomUtil.getRandomInt()).append("; ");
                         break;
                     case "float":
-                        builder.append("float ").append(RandomUtil.getRandomString()).append(" = (float) ").append(RandomUtil.getRandomFloat()).append("; ");
+                        builder.append("float ").append(prefix).append("_").append(RandomUtil.getRandomString()).append(" = (float) ").append(RandomUtil.getRandomFloat()).append("; ");
                         break;
                     default:
                         break;

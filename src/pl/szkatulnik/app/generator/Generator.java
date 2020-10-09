@@ -11,10 +11,10 @@ public abstract class Generator
         this.language = language;
     }
 
-    public Language getLanguage()
+    Language getLanguage()
     {
         return language;
     }
 
-    public abstract String generate();
+    public abstract String generate(String prefix, int variablesCount, int methodsCount, int variablesInMethodCount);
 }
